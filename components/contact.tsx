@@ -1,25 +1,25 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { useState } from 'react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
-  })
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-    setFormData({ name: '', email: '', message: '' })
-  }
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    setFormData({ name: '', email: '', message: '' });
+  };
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
@@ -55,7 +55,9 @@ export function Contact() {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Phone</h3>
                 <p className="text-muted-foreground">
-                  +256 (0) XXX XXXXXX
+                  <a href="tel:+256772455144" className="hover:text-primary transition-colors">
+                    +256 772 455 144
+                  </a>
                 </p>
               </div>
             </div>
@@ -67,17 +69,18 @@ export function Contact() {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Email</h3>
                 <p className="text-muted-foreground">
-                  <a href="mailto:info@permaculturehub.org" className="hover:text-primary transition-colors">
-                    info@permaculturehub.org
+                  <a
+                    href="mailto:bnakafeero14@gmail.com"
+                    className="hover:text-primary transition-colors"
+                  >
+                    bnakafeero14@gmail.com
                   </a>
                 </p>
               </div>
             </div>
 
             <div className="pt-8 border-t border-border">
-              <h3 className="font-serif font-bold text-lg text-foreground mb-4">
-                Follow Us
-              </h3>
+              <h3 className="font-serif font-bold text-lg text-foreground mb-4">Follow Us</h3>
               <div className="flex gap-4">
                 {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
                   <a
@@ -93,7 +96,10 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6 bg-white border border-border rounded-lg p-8">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-white border border-border rounded-lg p-8"
+          >
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
                 Full Name
@@ -152,5 +158,5 @@ export function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

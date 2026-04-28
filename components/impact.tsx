@@ -36,7 +36,7 @@ export function Impact() {
       url: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20260428-WA0029-bxJlKikQb8GWiEepHBBKhlSPv8n5uH.jpg',
       alt: 'Community women group with bio-products',
     },
-  ]
+  ];
 
   const metrics = [
     {
@@ -59,7 +59,7 @@ export function Impact() {
       label: 'Hectares Impacted',
       description: 'Through sustainable farming',
     },
-  ]
+  ];
 
   return (
     <section id="impact" className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
@@ -71,16 +71,13 @@ export function Impact() {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {metrics.map((metric, index) => (
-              <div key={index} className="bg-primary/5 border border-primary/10 rounded-lg p-6 text-center hover:border-primary/30 transition-colors">
-                <p className="font-serif font-bold text-4xl text-primary mb-2">
-                  {metric.value}
-                </p>
-                <p className="font-semibold text-foreground text-sm mb-1">
-                  {metric.label}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {metric.description}
-                </p>
+              <div
+                key={index}
+                className="bg-primary/5 border border-primary/10 rounded-lg p-6 text-center hover:border-primary/30 transition-colors"
+              >
+                <p className="font-serif font-bold text-4xl text-primary mb-2">{metric.value}</p>
+                <p className="font-semibold text-foreground text-sm mb-1">{metric.label}</p>
+                <p className="text-xs text-muted-foreground">{metric.description}</p>
               </div>
             ))}
           </div>
@@ -111,14 +108,21 @@ export function Impact() {
 
         {/* Call to Action */}
         <div className="mt-16 bg-primary/10 border border-primary/20 rounded-lg p-8 text-center">
-          <h3 className="font-serif font-bold text-2xl text-foreground mb-3">
-            Join Our Movement
-          </h3>
+          <h3 className="font-serif font-bold text-2xl text-foreground mb-3">Join Our Movement</h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Together, we're building a sustainable future for Northern Uganda. Whether through volunteering, partnerships, or donations, your support helps us transform lives and communities.
+            Together, we're building a sustainable future for Northern Uganda. Whether through
+            volunteering, partnerships, or donations, your support helps us transform lives and
+            communities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-primary hover:bg-accent text-primary-foreground px-8 py-3 rounded-full font-semibold transition-colors">
+            <button
+              className="bg-primary hover:bg-accent text-primary-foreground px-8 py-3 rounded-full font-semibold transition-colors"
+              onClick={() =>
+                window.open(
+                  'mailto:bnakafeero14@gmail.com?subject=Partnership Inquiry - Permaculture Hub'
+                )
+              }
+            >
               Become a Partner
             </button>
             <button className="border-2 border-primary text-primary hover:bg-primary/10 px-8 py-3 rounded-full font-semibold transition-colors">
@@ -128,5 +132,5 @@ export function Impact() {
         </div>
       </div>
     </section>
-  )
+  );
 }
