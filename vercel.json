@@ -3,7 +3,7 @@
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
-  "env": [],
+  "env": {},
   "regions": ["iad1"],
   "git": {
     "deploymentEnabled": true
