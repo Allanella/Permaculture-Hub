@@ -1,25 +1,50 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react'
+import { Mail, MapPin, Phone } from 'lucide-react'
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
-  });
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', message: '' });
-  };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setSubmitStatus('idle'), 3000)
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
@@ -55,9 +80,7 @@ export function Contact() {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Phone</h3>
                 <p className="text-muted-foreground">
-                  <a href="tel:+256772455144" className="hover:text-primary transition-colors">
-                    +256 772 455 144
-                  </a>
+                  +256 772 455 144
                 </p>
               </div>
             </div>
@@ -69,10 +92,7 @@ export function Contact() {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Email</h3>
                 <p className="text-muted-foreground">
-                  <a
-                    href="mailto:bnakafeero14@gmail.com"
-                    className="hover:text-primary transition-colors"
-                  >
+                  <a href="mailto:bnakafeero14@gmail.com" className="hover:text-primary transition-colors">
                     bnakafeero14@gmail.com
                   </a>
                 </p>
@@ -80,7 +100,9 @@ export function Contact() {
             </div>
 
             <div className="pt-8 border-t border-border">
-              <h3 className="font-serif font-bold text-lg text-foreground mb-4">Follow Us</h3>
+              <h3 className="font-serif font-bold text-lg text-foreground mb-4">
+                Follow Us
+              </h3>
               <div className="flex gap-4">
                 {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
                   <a
@@ -96,10 +118,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6 bg-white border border-border rounded-lg p-8"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6 bg-white border border-border rounded-lg p-8">
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
                 Full Name
@@ -148,15 +167,28 @@ export function Contact() {
               ></textarea>
             </div>
 
-            <button
-              type="submit"
-              className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold py-3 rounded-lg transition-colors"
-            >
-              Send Message
-            </button>
+            <div className="space-y-3">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full bg-primary hover:bg-accent text-primary-foreground font-semibold py-3 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? 'Sending...' : 'Send Message'}
+              </button>
+              {submitStatus === 'success' && (
+                <p className="text-green-600 text-sm font-medium text-center">
+                  Message sent successfully! We&apos;ll be in touch soon.
+                </p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-red-600 text-sm font-medium text-center">
+                  Failed to send message. Please try again or email us directly.
+                </p>
+              )}
+            </div>
           </form>
         </div>
       </div>
     </section>
-  );
+  )
 }
