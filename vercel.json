@@ -3,7 +3,6 @@
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
   "framework": "nextjs",
-  "env": {},
   "regions": ["iad1"],
   "git": {
     "deploymentEnabled": true
@@ -27,7 +26,5 @@
         }
       ]
     }
-  ],
-  "redirects": [],
-  "rewrites": []
+  ]
 }
