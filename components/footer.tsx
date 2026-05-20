@@ -17,12 +17,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Logo & Description */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground text-xs font-bold">PH</span>
-              </div>
-              <span className="font-serif font-bold text-lg">Permaculture Hub</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="Permaculture Hub"
+              className="h-12 w-auto"
+            />
             <p className="text-background/80 text-sm leading-relaxed">
               Empowering communities through sustainable agriculture and green entrepreneurship in Northern Uganda.
             </p>
@@ -82,28 +81,26 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+          {/* Donations */}
           <div>
-            <h4 className="font-semibold text-background mb-4">Newsletter</h4>
+            <h4 className="font-semibold text-background mb-4">Support Us</h4>
             <p className="text-background/80 text-sm mb-4">
-              Subscribe for updates on our programs and impact.
+              Help us empower communities through sustainable agriculture.
             </p>
-            <form onSubmit={handleSubscribe} className="space-y-2">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                required
-                className="w-full px-3 py-2 bg-background/20 border border-background/40 rounded-lg text-background placeholder:text-background/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent"
-              />
-              <button
-                type="submit"
-                className="w-full bg-accent hover:bg-primary text-accent-foreground font-semibold py-2 rounded-lg transition-colors text-sm"
-              >
-                Subscribe
-              </button>
-            </form>
+            <div className="space-y-2 text-sm text-background/90 bg-background/10 p-3 rounded-lg">
+              <p>
+                <strong>Account:</strong><br />
+                {'"'}11162304{'"'}
+              </p>
+              <p>
+                <strong>Name:</strong><br />
+                Permaculture Hub Northern Uganda
+              </p>
+              <p>
+                <strong>Bank:</strong><br />
+                Kitgum Co-operative Savings and Credit Society LTD
+              </p>
+            </div>
           </div>
         </div>
 
