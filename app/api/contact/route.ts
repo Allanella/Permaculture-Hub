@@ -1,7 +1,5 @@
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json()
@@ -13,6 +11,9 @@ export async function POST(request: Request) {
         { status: 400 }
       )
     }
+
+    // Initialize Resend safely inside the request handler
+    const resend = new Resend(process.env.RESEND_API_KEY || '')
 
     // Send email to organization
     const result = await resend.emails.send({
@@ -68,6 +69,7 @@ export async function POST(request: Request) {
   }
 }
 
+// Keep the helper at the bottom as a pure utility function
 function escapeHtml(unsafe: string): string {
   return unsafe
     .replace(/&/g, '&amp;')
