@@ -23,15 +23,22 @@ export function Contact() {
     setSubmitStatus('idle')
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '20828cf3-fa6c-4de8-a270-de67f074ab1a', // Remember to swap this out with your actual key!
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `New message from ${formData.name}`,
+          from_name: 'Website Contact Form',
+        }),
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (data.success) {
         setSubmitStatus('success')
         setFormData({ name: '', email: '', message: '' })
         setTimeout(() => setSubmitStatus('idle'), 3000)
@@ -79,9 +86,7 @@ export function Contact() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Phone</h3>
-                <p className="text-muted-foreground">
-                  +256 772 455 144
-                </p>
+                <p className="text-muted-foreground">+256 772 455 144</p>
               </div>
             </div>
 
@@ -100,9 +105,7 @@ export function Contact() {
             </div>
 
             <div className="pt-8 border-t border-border">
-              <h3 className="font-serif font-bold text-lg text-foreground mb-4">
-                Follow Us
-              </h3>
+              <h3 className="font-serif font-bold text-lg text-foreground mb-4">Follow Us</h3>
               <div className="flex gap-4">
                 {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
                   <a
