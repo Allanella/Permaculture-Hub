@@ -25,9 +25,11 @@ export function Contact() {
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
-          access_key: '20828cf3-fa6c-4de8-a270-de67f074ab1a', // Remember to swap this out with your actual key!
+          access_key: '36ec4ff6-0574-4eed-bad1-55ddbaecd1c4',
           name: formData.name,
           email: formData.email,
           message: formData.message,
@@ -64,8 +66,9 @@ export function Contact() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+
           <div className="space-y-8">
+
             <div className="flex gap-4">
               <div className="flex-shrink-0">
                 <MapPin className="w-6 h-6 text-primary mt-1" />
@@ -97,7 +100,10 @@ export function Contact() {
               <div>
                 <h3 className="font-semibold text-foreground mb-1">Email</h3>
                 <p className="text-muted-foreground">
-                  <a href="mailto:bnakafeero14@gmail.com" className="hover:text-primary transition-colors">
+                  <a
+                    href="mailto:bnakafeero14@gmail.com"
+                    className="hover:text-primary transition-colors"
+                  >
                     bnakafeero14@gmail.com
                   </a>
                 </p>
@@ -107,21 +113,17 @@ export function Contact() {
             <div className="pt-8 border-t border-border">
               <h3 className="font-serif font-bold text-lg text-foreground mb-4">Follow Us</h3>
               <div className="flex gap-4">
-                {['facebook', 'twitter', 'instagram', 'linkedin'].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-10 h-10 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors text-primary font-semibold"
-                  >
-                    {social[0].toUpperCase()}
-                  </a>
-                ))}
+                <a href="#" className="w-10 h-10 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors text-primary font-semibold">F</a>
+                <a href="#" className="w-10 h-10 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors text-primary font-semibold">T</a>
+                <a href="#" className="w-10 h-10 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors text-primary font-semibold">I</a>
+                <a href="#" className="w-10 h-10 bg-primary/10 hover:bg-primary/20 rounded-full flex items-center justify-center transition-colors text-primary font-semibold">L</a>
               </div>
             </div>
+
           </div>
 
-          {/* Contact Form */}
           <form onSubmit={handleSubmit} className="space-y-6 bg-white border border-border rounded-lg p-8">
+
             <div>
               <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
                 Full Name
@@ -189,7 +191,9 @@ export function Contact() {
                 </p>
               )}
             </div>
+
           </form>
+
         </div>
       </div>
     </section>
